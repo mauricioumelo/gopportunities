@@ -1,1 +1,16 @@
 go.sum
+
+#Database folder
+db/*
+ 
+# Binaries
+*.exe
+*.so
+*.dll
+*.dylib
+
+# test binary
+*.test
+
+#coverage
+*.out
