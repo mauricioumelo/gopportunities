@@ -4,10 +4,27 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/mauricioumelo/gopportunities/schemas"
 )
 
 func DeleteOpeningHandler(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"message": "DELETE message opening!",
-	})
+	id := ctx.Query("id")
+	if id == "" {
+		SendError(ctx, http.StatusBadRequest, errValueIsRequired("id", "queryParameter").Error())
+		return
+	}
+
+	opening :=schemas.Opening{}
+
+	if err:= db.First(&opening, id).Error; err!=nil{
+		SendError(ctx, http.StatusNotFound, "error opening not found")
+		return
+	}
+
+	if err:= db.Delete(&opening).Error; err!=nil{
+		SendError(ctx, http.StatusNotFound, "error delete opening")
+		return
+	}
+
+	SendSuccess(ctx, http.StatusOK, "Success delete opening", &opening)
 }
