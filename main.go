@@ -5,10 +5,12 @@ import (
 	"github.com/mauricioumelo/gopportunities/router"
 )
 
-var logger config.Logger
+var (
+	logger *config.Logger
+)
 
 func main() {
-	logger = *config.GetLogger("MAIN")
+	logger = config.GetLogger("MAIN")
 	//Initialize configs
 	err := config.Init()
 	if err != nil {
