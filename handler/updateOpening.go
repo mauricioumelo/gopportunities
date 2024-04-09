@@ -41,8 +41,8 @@ func UpdateOpeningHandler(ctx *gin.Context) {
 	err := db.Save(&opening)
 
 	if err.Error != nil {
-		logger.Errorf("error creating opening: %v", err.Error)
-		SendError(ctx, http.StatusInternalServerError, "error creating opening on database")
+		logger.Errorf("error update opening: %v", err.Error)
+		SendError(ctx, http.StatusInternalServerError, "error update opening on database")
 		return
 	}
 	resp := schemas.OpeningResponse{
@@ -61,5 +61,5 @@ func UpdateOpeningHandler(ctx *gin.Context) {
 		resp.DeletedAt = &opening.DeletedAt.Time
 	}
 
-	SendSuccess(ctx, http.StatusCreated, "Success opening updated", resp)
+	SendSuccess(ctx, http.StatusOK, "Success opening updated", resp)
 }
