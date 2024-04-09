@@ -15,6 +15,10 @@ type Opening struct {
 	Link     string
 	Salary   int64
 }
+type OpeningRequest struct {
+	ID   string `uri:"id" binding:"required"`
+	Role string `uri:"role"`
+}
 
 type OpeningResponse struct {
 	ID        uint       `json:"id"`

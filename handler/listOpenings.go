@@ -11,7 +11,7 @@ func ListOpeningsHandler(ctx *gin.Context) {
 	openings := []schemas.Opening{}
 
 	if err := db.Find(&openings).Error; err != nil {
-		SendError(ctx, http.StatusBadRequest, "error list openings")
+		SendError(ctx, http.StatusInternalServerError, "error listing openings")
 		return
 	}
 
