@@ -9,7 +9,7 @@ import (
 )
 
 func DeleteOpeningHandler(ctx *gin.Context) {
-	or := schemas.OpeningRequest{}
+	or := ListOpeningRequest{}
 
 	if err := ctx.ShouldBindUri(&or); err != nil {
 		SendError(ctx, http.StatusBadRequest, errValueIsRequired("id", "queryParameter").Error())
